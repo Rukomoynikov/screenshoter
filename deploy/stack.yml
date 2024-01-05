@@ -1,0 +1,15 @@
+version: "3.2"
+
+services:
+  browserless:
+    image: "browserless/chrome:latest"
+    environment:
+      MAX_CONCURRENT_SESSIONS: 10
+    ports:
+      - "3000:3000"
+  application:
+    build:
+      context: ../screenshoter
+      dockerfile: ../screenshoter/Dockerfile-production
+    ports:
+      - "8080:8080"

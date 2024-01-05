@@ -3,7 +3,7 @@
   tasks:
     - name: Copy application's stack file
       ansible.builtin.template:
-        src: "{{inventory_dir}}/browserless/application.yml"
+        src: "{{inventory_dir}}/stack.yml"
         dest: "/tmp/{{application_name}}.yml"
     - name: Deploy stack from a compose file
       docker_stack:
