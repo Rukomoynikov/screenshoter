@@ -16,17 +16,17 @@ services:
     deploy:
       labels:
         - traefik.enable=true
-        - traefik.http.routers.application.rule=Host(`screenshoter.codemetrics.dev`)
-        - traefik.http.routers.application.tls=true
-        - traefik.http.routers.application.tls.certresolver=leresolver
-        - traefik.http.routers.application.middlewares=redirect-to-https
-        - traefik.http.routers.application-https.rule=Host(`screenshoter.codemetrics.dev`)
-        - traefik.http.routers.application-https.entrypoints=websecure
-        - traefik.http.routers.application-https.tls=true
-        - traefik.http.routers.application-https.tls.certresolver=le
-        - traefik.http.routers.application-https.middlewares=redirect-to-https
-        - traefik.http.routers.application-https.service=application
-        - traefik.http.services.application.loadbalancer.server.port=8080
+        - traefik.http.routers.screenshoter.rule=Host(`screenshoter.codemetrics.dev`)
+        - traefik.http.routers.screenshoter.tls=true
+        - traefik.http.routers.screenshoter.tls.certresolver=leresolver
+        - traefik.http.routers.screenshoter.middlewares=redirect-to-https
+        - traefik.http.routers.screenshoter-https.rule=Host(`screenshoter.codemetrics.dev`)
+        - traefik.http.routers.screenshoter-https.entrypoints=websecure
+        - traefik.http.routers.screenshoter-https.tls=true
+        - traefik.http.routers.screenshoter-https.tls.certresolver=leresolver
+        - traefik.http.routers.screenshoter-https.middlewares=redirect-to-https
+        - traefik.http.routers.screenshoter-https.service=application
+        - traefik.http.services.screenshoter.loadbalancer.server.port=8080
 
 networks:
   traefik-public:
