@@ -10,6 +10,8 @@ app.get("/image", async (req, res) => {
   });
   const page = await browser.newPage();
 
+  await page.setViewport({width: 1920, height: 1080});
+
   await page.goto("http://www.example.com/");
   const data = await page.screenshot();
   browser.close();
