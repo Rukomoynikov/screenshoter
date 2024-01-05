@@ -3,6 +3,8 @@ version: "3.2"
 services:
   browserless:
     image: "browserless/chrome:latest"
+    networks:
+      - app-network
     environment:
       MAX_CONCURRENT_SESSIONS: 20
     ports:
@@ -13,6 +15,7 @@ services:
       - "8080:8080"
     networks:
       - traefik-public
+      - app-network
     deploy:
       labels:
         - traefik.enable=true
@@ -31,3 +34,7 @@ services:
 networks:
   traefik-public:
     external: true
+  app-network:
+    driver: overlay
+    internal: true
+    attachable: true
