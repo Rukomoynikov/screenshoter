@@ -8,6 +8,6 @@ services:
     ports:
       - "3000:3000"
   application:
-    image: "rukomoynikov/cover_image"
+    image: "ghcr.io/rukomoynikov/cover_image"
     ports:
       - "8080:8080"
