@@ -19,4 +19,8 @@ app.get("/image", async (req, res) => {
   return res.end(data, "binary");
 });
 
+app.get("/", async (req, res) => {
+  res.send('Hello World!')
+});
+
 app.listen(8080);
