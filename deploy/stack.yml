@@ -8,8 +8,6 @@ services:
     ports:
       - "3000:3000"
   application:
-    build:
-      context: ../screenshoter
-      dockerfile: ../screenshoter/Dockerfile-production
+    image: "rukomoynikov/cover_image"
     ports:
       - "8080:8080"

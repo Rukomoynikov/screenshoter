@@ -1,0 +1,39 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches:
+      - main
+
+env:
+  REGISTRY: ghcr.io
+  IMAGE_NAME: ${{ github.repository }}
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    needs: test
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - uses: actions/checkout@v3
+      - name: Log in to the Container registry
+        uses: docker/login-action@v2
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - name: Build and push Docker image
+        uses: docker/build-push-action@ad44023a93711e3deb337508980b4b5e9bcdc5dc
+        env:
+          COMMIT_HASH: ${{ github.sha }}
+        with:
+          context: ./screenshoter
+          file: ./Dockerfile-production
+          push: true
+          tags: |
+            ghcr.io/rukomoynikov/screenshoter:latest
+            ghcr.io/rukomoynikov/screenshoter:${{ github.sha }}
+            
+            
