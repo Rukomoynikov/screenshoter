@@ -1,0 +1,7 @@
+version: "3.2"
+
+services:
+  application:
+    image: "browserless/chrome:latest"
+    environment:
+      MAX_CONCURRENT_SESSIONS: 10
