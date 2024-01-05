@@ -25,7 +25,7 @@ services:
         - traefik.http.routers.screenshoter-https.tls=true
         - traefik.http.routers.screenshoter-https.tls.certresolver=leresolver
         - traefik.http.routers.screenshoter-https.middlewares=redirect-to-https
-        - traefik.http.routers.screenshoter-https.service=application
+        - traefik.http.routers.screenshoter-https.service=screenshoter
         - traefik.http.services.screenshoter.loadbalancer.server.port=8080
 
 networks:
