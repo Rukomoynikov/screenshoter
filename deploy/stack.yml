@@ -16,6 +16,7 @@ services:
     networks:
       - traefik-public
       - app-network
+      - logs_default
     logging:
       driver: "gelf"
       options:
@@ -43,3 +44,5 @@ networks:
     driver: overlay
     internal: true
     attachable: true
+  logs_default:
+    external: true
