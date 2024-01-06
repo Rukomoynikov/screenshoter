@@ -9,6 +9,13 @@ services:
       MAX_CONCURRENT_SESSIONS: 20
     ports:
       - "3000:3000"
+  seq-input-gelf:
+    image: datalust/seq-input-gelf:latest
+    ports:
+      - "12201:12201/udp"
+    environment:
+      SEQ_ADDRESS: "http://logs_seq:5341"
+    restart: unless-stopped
   application:
     image: "ghcr.io/rukomoynikov/screenshoter"
     ports:
@@ -17,11 +24,11 @@ services:
       - traefik-public
       - app-network
       - logs_default
-#    logging:
-#      driver: "gelf"
-#      options:
-#        gelf-address: "udp://logs_seq-input-gelf:12201"
-#        tag: "screenshoter"
+    logging:
+      driver: "gelf"
+      options:
+        gelf-address: "udp://seq-input-gelf:12201"
+        tag: "screenshoter"
     deploy:
       labels:
         - traefik.enable=true
