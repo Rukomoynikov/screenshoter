@@ -16,6 +16,8 @@ app.get("/image", async (req, res) => {
   const data = await page.screenshot();
   browser.close();
 
+  console.log("Screenshot taken");
+
   return res.end(data, "binary");
 });
 
