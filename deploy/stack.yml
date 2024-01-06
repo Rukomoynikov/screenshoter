@@ -18,6 +18,8 @@ services:
     restart: unless-stopped
   application:
     image: "ghcr.io/rukomoynikov/screenshoter"
+    environment:
+      - SEQ_HOST=seq-input-gelf
     ports:
       - "8080:8080"
     networks:
@@ -27,7 +29,7 @@ services:
     logging:
       driver: "gelf"
       options:
-        gelf-address: "udp://seq-input-gelf:12202"
+        gelf-address: "udp://${SEQ_HOST}:12202"
         tag: "screenshoter"
     deploy:
       labels:
