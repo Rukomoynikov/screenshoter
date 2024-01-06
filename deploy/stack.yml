@@ -12,7 +12,7 @@ services:
   seq-input-gelf:
     image: datalust/seq-input-gelf:latest
     ports:
-      - "12201:12201/udp"
+      - "12202:12202/udp"
     environment:
       SEQ_ADDRESS: "http://logs_seq:5341"
     restart: unless-stopped
@@ -27,7 +27,7 @@ services:
     logging:
       driver: "gelf"
       options:
-        gelf-address: "udp://seq-input-gelf:12201"
+        gelf-address: "udp://seq-input-gelf:12202"
         tag: "screenshoter"
     deploy:
       labels:
