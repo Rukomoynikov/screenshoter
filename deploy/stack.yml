@@ -17,11 +17,11 @@ services:
       - traefik-public
       - app-network
       - logs_default
-    logging:
-      driver: "gelf"
-      options:
-        gelf-address: "udp://logs_seq-input-gelf:12201"
-        tag: "screenshoter"
+#    logging:
+#      driver: "gelf"
+#      options:
+#        gelf-address: "udp://logs_seq-input-gelf:12201"
+#        tag: "screenshoter"
     deploy:
       labels:
         - traefik.enable=true
