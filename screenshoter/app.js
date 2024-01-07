@@ -22,6 +22,8 @@ app.get("/image", async (req, res) => {
 });
 
 app.get("/", async (req, res) => {
+  console.log("Screenshot taken");
+  
   res.send('Hello World!')
 });
 
