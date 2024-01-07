@@ -9,17 +9,10 @@ services:
       MAX_CONCURRENT_SESSIONS: 20
     ports:
       - "3000:3000"
-  seq-input-gelf:
-    image: datalust/seq-input-gelf:latest
-    ports:
-      - "12202:12202/udp"
-    environment:
-      SEQ_ADDRESS: "http://logs_seq:5341"
-    restart: unless-stopped
   application:
     image: "ghcr.io/rukomoynikov/screenshoter"
     environment:
-      - SEQ_HOST=seq-input-gelf
+      - SEQ_HOST=logs_seq-input-gelf
     ports:
       - "8080:8080"
     networks:
@@ -29,7 +22,7 @@ services:
     logging:
       driver: "gelf"
       options:
-        gelf-address: "udp://${SEQ_HOST}:12202"
+        gelf-address: "udp://${SEQ_HOST}:12201"
         tag: "screenshoter"
     deploy:
       labels:
